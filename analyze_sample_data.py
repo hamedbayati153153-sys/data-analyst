@@ -1,24 +1,20 @@
-# analyze_sample_data.py
-
 import pandas as pd
 
-def analyze_data(data_path, save_path):
-    # Load the data
-    data = pd.read_csv(data_path)
+def analyze_data(file_path):
+    # Load the dataset
+    data = pd.read_csv(file_path)
+
+    # Perform some analysis
+    summary = data.describe()
+
+    # Display the summary of the analyzed data
+    print("Dataset analysis summary:")
+    print(summary)
     
-    # Display the first few rows of the dataset
-    print("Data before analysis:")
-    print(data.head())
+    # New code to display the first 5 rows of the summary or all rows if less than 5 exist
+    print("\nDisplaying the first 5 rows of the analysis summary:")
+    print(summary.head(5) if len(summary) > 5 else summary)
 
-    # Perform analysis (example: summary statistics)
-    analysis_result = data.describe()
-
-    # Display the analysis summary
-    print("Analysis Summary:")
-    print(analysis_result)
-
-    # Save the analysis result to a CSV file
-    analysis_result.to_csv(save_path)
-    
 # Example usage
-# analyze_data("input.csv", "output.csv")
+if __name__ == "__main__":
+    analyze_data("sample_dataset.csv")
